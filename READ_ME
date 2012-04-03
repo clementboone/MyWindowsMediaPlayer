@@ -1,0 +1,7 @@
+ cd MyWindowsMediaPlayer
+  git init
+  touch README
+  git add README
+  git commit -m 'first commit'
+  git remote add origin git@github.com:bobby-le-chat/MyWindowsMediaPlayer.git
+  git push -u origin master
