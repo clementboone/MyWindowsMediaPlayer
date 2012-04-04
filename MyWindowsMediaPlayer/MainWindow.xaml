@@ -3,6 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
+        <GridSplitter Height="299" HorizontalAlignment="Left" Margin="68,12,0,0" Name="gridSplitter1" VerticalAlignment="Top" Width="1" />
+        <StatusBar Height="17" HorizontalAlignment="Left" Margin="383,294,0,0" Name="statusBar1" VerticalAlignment="Top" Width="120" />
+        <ToolBar Height="26" HorizontalAlignment="Left" Name="toolBar1" VerticalAlignment="Top" Width="491">
+            <ComboBox Height="23" HorizontalAlignment="Left" Margin="113,5,0,0" Name="comboBox1" VerticalAlignment="Top" Width="120">
+                <Image Height="150" HorizontalAlignment="Left" Margin="175,11,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="200" />
+                
+            </ComboBox>
+        </ToolBar>
         
     </Grid>
 </Window>
