@@ -7,5 +7,9 @@ namespace MyWindowsMediaPlayer
 {
     class ClassTest
     {
+
+        int i = 0;
+        char c;
+
     }
 }
