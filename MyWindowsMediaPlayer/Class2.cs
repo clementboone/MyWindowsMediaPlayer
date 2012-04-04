@@ -5,8 +5,7 @@ using System.Text;
 
 namespace MyWindowsMediaPlayer
 {
-    class Class1
+    class Class2
     {
-
     }
 }
