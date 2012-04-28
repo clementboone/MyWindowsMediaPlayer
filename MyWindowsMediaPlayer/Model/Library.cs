@@ -10,6 +10,7 @@ namespace MyWindowsMediaPlayer.Model
     public class Library : XmlFile
     {
         private List<Filter> _categories;
+        private List<Filter> _name;
         public List<Filter> Categories
         {
             get
@@ -20,6 +21,22 @@ namespace MyWindowsMediaPlayer.Model
             {
                 this._categories = value;
             }
+        }
+        private Filter newFilter(XElement xmlNode, Filter parent)
+        {
+            Filter newFilter;
+            string filterName = xmlNode.Attribute("name").Value;
+            if (parent == null)
+            {
+                string extention = (xmlNode.Attribute("extentions") != null ? xmlNode.Attribute("extentions").Value : "");
+                string path = Path.ChangeExtension(this._filePath, "") + "_" + filterName + ".xml";
+                newFilter = new Category(filterName, path, extention);
+            }
+            else
+            {
+                newFilter=  new Filter(filterName, parent);
+            }
+            return newFilter;
         }
         private List<Filter> loadFilters(IEnumerable<XElement> filters, Filter parent)
         {
@@ -43,9 +60,10 @@ namespace MyWindowsMediaPlayer.Model
         }
         private List<Filter> loadCategories()
         {
-            IEnumerable<XElement> categories = from element in this._xmlDocument.Elements().Elements()
+            IEnumerable<XElement> categories = from element in this._xmlDocument.Elements()
                                                 select element;
-            return this.loadFilters(categories, null);
+
+            return this.loadFilters(categories.Elements(), null);
         }
         public Library(string path = "")
         {

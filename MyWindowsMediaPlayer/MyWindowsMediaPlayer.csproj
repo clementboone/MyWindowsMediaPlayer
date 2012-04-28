@@ -58,10 +58,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\File.cs" />
+    <Compile Include="Model\MediaList.cs" />
     <Compile Include="Model\Filter.cs" />
     <Compile Include="Model\XmlObject.cs" />
     <Compile Include="Model\XmlFile.cs" />
     <Compile Include="Model\Library.cs" />
+    <Compile Include="ViewModel\FileViewModel.cs" />
     <Compile Include="ViewModel\FilterViewModel.cs" />
     <Compile Include="ViewModel\MasterViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
@@ -71,6 +74,12 @@
     </Compile>
     <Compile Include="View\MasterView.xaml.cs">
       <DependentUpon>MasterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PopupTextView.xaml.cs">
+      <DependentUpon>PopupTextView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ToolbarView.xaml.cs">
+      <DependentUpon>ToolbarView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -89,6 +98,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MasterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PopupTextView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ToolbarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

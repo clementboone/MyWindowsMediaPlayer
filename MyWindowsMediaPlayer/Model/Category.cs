@@ -9,7 +9,7 @@ namespace MyWindowsMediaPlayer.Model
     {
         public List<string> Extentions { get; protected set; }
 
-        public Category(string name) : base(name, null)
+        public Category(string name, string path, string extentions) : base(name, null)
         {
             this.Extentions = new List<string>();
         }

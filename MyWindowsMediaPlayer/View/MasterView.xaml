@@ -31,9 +31,11 @@
         <Label Grid.Row="0" Content="Library" />
         <ListView Grid.Row="1" ItemsSource="{Binding FilterList}" IsSynchronizedWithCurrentItem="True">
         </ListView>
-        <UniformGrid Grid.Row="2" Columns="4">
-            <Button Content="Remove"  Command="{Binding InfoCommand}"/>
+        <UniformGrid Columns="4">
+            <Button Content="Delete"  Command="{Binding InfoCommand}"/>
             <Button Content="Load"  Command="{Binding InfoCommand}" DataContext="{Binding}" />
+            <Button Content="New"  Command="{Binding InfoCommand}" DataContext="{Binding}" />
+            <Button Content="Edit"  Command="{Binding InfoCommand}" DataContext="{Binding}" />
         </UniformGrid>
 
     </Grid>

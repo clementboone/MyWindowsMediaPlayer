@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="MyWindowsMediaPlayer.View.PopupTextView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" >
+    <UniformGrid Rows="3" MinWidth="200" >
+        <Label Content="Enter name :" VerticalContentAlignment="Center" Margin="0,5,0,5" />
+        <TextBlock Text="Content" Padding="10,3,10,3" Margin="0,5,0,5" />
+        <Button Width="Auto" Content="Valid" HorizontalAlignment="Center" Padding="10,3,10,3" Margin="0,5,0,5"/>
+    </UniformGrid>
+</UserControl>
