@@ -23,7 +23,7 @@ namespace MyWindowsMediaPlayer.Model
             this.Parent = parent;
             this.Filters = null;
         }
-        protected Category getCategory()
+        public Category getCategory()
         {
             if (this.Parent != null)
                 return this.Parent.getCategory();

@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Input;
 
+using System.Windows.Input;
 using MyWindowsMediaPlayer.Model;
-using MyWindowsMediaPlayer.View;
 
 namespace MyWindowsMediaPlayer.ViewModel
 {
@@ -16,7 +12,6 @@ namespace MyWindowsMediaPlayer.ViewModel
     {
         private Filter _filter;
         private ICommand infoCommand;
-        private DialogBox _popup;
 
         public string Name
         {
@@ -71,8 +66,6 @@ namespace MyWindowsMediaPlayer.ViewModel
         public void DoubleClick()
         {
             Console.WriteLine("Super " + this.Name);
-            this._popup = new PopupTextView();
-            this._popup.ShowDialog();
         }
     }
 }

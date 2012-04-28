@@ -10,7 +10,6 @@ namespace MyWindowsMediaPlayer.Model
     public class Library : XmlFile
     {
         private List<Filter> _categories;
-        private List<Filter> _name;
         public List<Filter> Categories
         {
             get
@@ -29,8 +28,9 @@ namespace MyWindowsMediaPlayer.Model
             if (parent == null)
             {
                 string extention = (xmlNode.Attribute("extentions") != null ? xmlNode.Attribute("extentions").Value : "");
+                string type = (xmlNode.Attribute("type") != null ? xmlNode.Attribute("type").Value : "");
                 string path = Path.ChangeExtension(this._filePath, "") + "_" + filterName + ".xml";
-                newFilter = new Category(filterName, path, extention);
+                newFilter = new Category(filterName, path, extention, type);
             }
             else
             {
@@ -94,17 +94,5 @@ namespace MyWindowsMediaPlayer.Model
                                                 select element;
             return this.addElementToNode(newFilter, xParent.First());
         }
-        /*
-        public bool loadFiles(Filter filter, string path)
-        {
-            if (filter.Parent == null)
-                Console.WriteLine("NULL");
-            else
-                Console.WriteLine(filter.Parent.Name);
-            string[] filePaths = Directory.GetFiles(path, "*.mp3",
-                                         SearchOption.AllDirectories);
-            return true;
-        }
-        */
     }
 }

@@ -3,42 +3,69 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using System.Text;
+using System.IO;
 
 namespace MyWindowsMediaPlayer.Model
 {
     class MediaList : XmlFile
     {
-        private List<File> _medias;
-        public List<File> Medias { get { return this._medias; } set { this._medias = value; } }
+        private Filter _filter;
+        private Category _category;
+        private List<File> _mediasList;
+        public List<File> MediasList { get { return this._mediasList; } set { this._mediasList = value; } }
 
-        private List<File> loadMedia()
+        private void loadMedias(string filter)
         {
-            IEnumerable<XElement> categories = from element in this._xmlDocument.Elements()
+            IEnumerable<XElement> categories = from element in this._xmlDocument.Elements().Elements()
                                                select element;
+            File newFile = null;
             foreach (XElement line in categories)
             {
-                if (line.Attribute("name") != null)
+                if (line.Attribute("path") != null)
                 {
-                    tempFilter = new File(line.Attribute("name").Value, parent);
-                    if (line.Elements() != null)
-                        tempFilter.Filters = this.loadFilters(line.Elements(), tempFilter);
-                    tempList.Add(tempFilter);
+                    newFile = new File(line.Attribute("path").Value);
+                    this._mediasList.Add(newFile);
                 }
             }
-            return this.loadFilters(categories.Elements(), null);
         }
 
-        public MediaList(string path = "")
+        public MediaList(string path, Filter filter)
         {
-            if (path != "")
-            {
-                this._filePath = path;
-                Properties.Settings.Default.LibPath = path;
-            }
-            else
-                this._filePath = Properties.Settings.Default.LibPath;
+            this._filePath = path;
+            this._filter = filter;
+            this._category = filter.getCategory();
             this.loadFile(this._filePath);
-            this.Medias = this.loadMedias();
+            this.loadMedias(filter.Name);
+        }
+
+        private string[] fileList(string path)
+        {
+            string[] filePaths = {};
+            foreach (string extention in this._category.Extentions)
+            {
+                filePaths.Concat(Directory.GetFiles(path, "*." + extention, SearchOption.AllDirectories));
+            }
+            return filePaths;
+        }
+        private bool addMedia(File newMedia)
+        {
+            XElement newNode = new XElement("file");
+            newNode.SetAttributeValue("path", newMedia.Name);
+            return this.addElementToNode(newNode, this._xmlDocument.Elements().First());
+        }
+        public int loadFiles(string path)
+        {
+            int nbNewMedia = 0;
+            foreach (string newFile in this.fileList(path))
+            {
+                if (!this._mediasList.Exists(file => file.Name == newFile))
+                {
+                    this._mediasList.Add(new File(newFile));
+                    this.addMedia(this._mediasList.Last());
+                    nbNewMedia++;
+                }
+            }
+            return nbNewMedia;
         }
     }
 }

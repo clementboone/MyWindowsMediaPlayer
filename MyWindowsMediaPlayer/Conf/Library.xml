@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <library>
-  <category name="Musique">
-    <filter name="j'aime" />
-    <filter name="nul" />
+  <category name="Musics" extentions="mp3,flac,wav,wma,oggs" type="audio">
+    <filter name="Love" />
+    <filter name="Bad" />
   </category>
-  <category name="Images"></category>
-  <category name="Films"></category>
+  <category name="Images" type="picture"></category>
+  <category name="Movies" type="video"></category>
 </library>

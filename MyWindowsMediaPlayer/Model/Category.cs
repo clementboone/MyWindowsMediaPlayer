@@ -7,11 +7,21 @@ namespace MyWindowsMediaPlayer.Model
 {
     public class Category : Filter
     {
-        public List<string> Extentions { get; protected set; }
+        public List<string> Extentions;
+        public string Type { get; private set; }
 
-        public Category(string name, string path, string extentions) : base(name, null)
+
+        public Category(string name, string path, string extentions, string type)
+            : base(name, null)
         {
+            string[] tempExtentionTab = extentions.Split(',');
             this.Extentions = new List<string>();
+            foreach (string singleExtention in tempExtentionTab)
+            {
+                if (singleExtention != "")
+                this.Extentions.Add(singleExtention);
+            }
+            this.Type = type;
         }
     }
 }
