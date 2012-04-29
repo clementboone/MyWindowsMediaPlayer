@@ -33,6 +33,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             this._currentAudio.Location = @"C:\Users\Public\Music\Sample Music\Kalimba.mp3";
             this._currentAudio.AudioPlayer = new NAudioPlayer(ref this._currentAudio);
         }
+
         private void CommandSetter()
         {
             this.PlayAudio = new RelayCommand(PerformPlayAudio);
@@ -40,8 +41,8 @@ namespace MyWindowsMediaPlayer.ViewModel
             this.NextAudio = new RelayCommand(PerformNextAudio);
             this.PauseAudio = new RelayCommand(PerformPauseAudio);
             this.StopAudio = new RelayCommand(PerformStopAudio);
-
         }
+
         private void PerformPlayAudio()
         {
             this._currentAudio.AudioPlayer.Play();
@@ -50,7 +51,6 @@ namespace MyWindowsMediaPlayer.ViewModel
         private void PerformStopAudio()
         {
             this._currentAudio.AudioPlayer.Stop();
-
         }
 
         private void PerformNextAudio()
