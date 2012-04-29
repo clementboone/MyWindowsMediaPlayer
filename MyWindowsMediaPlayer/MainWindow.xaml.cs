@@ -13,7 +13,7 @@ namespace MyWindowsMediaPlayer
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new MasterViewModel();
+            this.DataContext = new MasterViewModel(this);
         }
     }
 }

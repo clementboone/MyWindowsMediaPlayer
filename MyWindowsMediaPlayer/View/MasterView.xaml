@@ -32,10 +32,10 @@
         <ListView Grid.Row="1" ItemsSource="{Binding FilterList}" IsSynchronizedWithCurrentItem="True">
         </ListView>
         <UniformGrid Columns="4">
-            <Button Content="Delete" Command="{Binding InfoCommand}" />
+            <Button Content="Delete" Command="{Binding }" />
             <Button Content="Load" Command="{Binding LoadFolderCommand}" />
-            <Button Content="New" Command="{Binding InfoCommand}" />
-            <Button Content="Edit" Command="{Binding InfoCommand}" />
+            <Button Content="New Filter" Command="{Binding NewFilterCommand}" />
+            <Button Content="Edit" Command="{Binding }" />
         </UniformGrid>
 
     </Grid>

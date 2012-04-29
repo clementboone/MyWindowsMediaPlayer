@@ -56,7 +56,7 @@ namespace MyWindowsMediaPlayer.Model
                 }
                 return tempList;
             }
-            return null;
+            return new List<Filter>();
         }
         private List<Filter> loadCategories()
         {

@@ -17,11 +17,15 @@ namespace MyWindowsMediaPlayer.View
     /// <summary>
     /// Logique d'interaction pour PopupTextView.xaml
     /// </summary>
-    public partial class PopupTextView : UserControl
+    public partial class PopupTextView : Window
     {
         public PopupTextView()
         {
             InitializeComponent();
+        }
+        public void ok(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

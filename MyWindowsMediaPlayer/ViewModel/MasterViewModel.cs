@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Windows;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Data;
 using System.Windows.Input;
+
+using MyWindowsMediaPlayer.View;
 using MyWindowsMediaPlayer.Model;
 
 namespace MyWindowsMediaPlayer.ViewModel
@@ -10,17 +13,20 @@ namespace MyWindowsMediaPlayer.ViewModel
     class MasterViewModel : ViewModelBase
     {
         private readonly Library _library;
+        private Window _parent;
         private readonly ObservableCollection<FilterViewModel> _filterList;
         private ICollectionView collectionView;
-        private ICommand infoCommand;
         private ICommand loadCommand;
+        private ICommand newFilterCommand;
+        public string NewName { get; set; }
         public FilterViewModel SelectedFilter
         {
             get { return this.collectionView.CurrentItem as FilterViewModel; }
         }
 
-        public MasterViewModel()
+        public MasterViewModel(Window parent)
         {
+            this._parent = parent;
             this._library = new Library();
             this._filterList = new ObservableCollection<FilterViewModel>();
             foreach (Filter category in this._library.Categories)
@@ -49,25 +55,33 @@ namespace MyWindowsMediaPlayer.ViewModel
             get
             {
                 if (this.loadCommand == null)
-                    this.loadCommand = new RelayCommand(() => this.LoadFolder(), () => this.CanLoadFolder());
+                    this.loadCommand = new RelayCommand(() => this.LoadFolder(), () => this.IsCategoryFolder());
 
                 return this.loadCommand;
             }
         }
-        public ICommand InfoCommand
+        public ICommand NewFilterCommand
         {
             get
             {
-                if (this.infoCommand == null)
-                    this.infoCommand = new RelayCommand(() => this.InfoFilter());
+                if (this.newFilterCommand == null)
+                    this.newFilterCommand = new RelayCommand(() => this.NewFilter(), () => this.IsCategoryFolder());
 
-                return this.infoCommand;
+                return this.newFilterCommand;
             }
         }
-
-        private void InfoFilter()
+        private bool IsCategoryFolder()
         {
-            this.FilterList.Add(new FilterViewModel(new Filter("Toto", null)));
+            if (this.SelectedFilter.Parent == null)
+                return true;
+            return false;
+        }
+        private void NewFilter()
+        {
+            PopupTextView popUp = new PopupTextView();
+
+
+    
         }
 
 
@@ -76,14 +90,11 @@ namespace MyWindowsMediaPlayer.ViewModel
             var dialog = new System.Windows.Forms.FolderBrowserDialog();
             dialog.ShowDialog();
 
-            Console.WriteLine(dialog.SelectedPath);
+            Console.WriteLine(this.NewName + " " + dialog.SelectedPath);
         }
-        private bool CanLoadFolder()
-        {
-            if (this.SelectedFilter.Parent == null)
-                return true;
-            return false;
-        }
+
+
+
         private void OnCollectionViewCurrentChanged(object sender, EventArgs e)
         {
             onProprietyChanged("SelectedPerson");
