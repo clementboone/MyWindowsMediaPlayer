@@ -14,7 +14,7 @@ namespace Player.Audio
 {
 
    
-    class NAudioPlayer : IAudioPlayer
+    public class NAudioPlayer : IAudioPlayer
     {
         private Audio media;
         private IWavePlayer waveOutDevice;

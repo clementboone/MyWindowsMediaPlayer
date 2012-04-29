@@ -35,6 +35,7 @@ namespace MyWindowsMediaPlayer.ViewModel
         {
             get { return this.audioCollectionView.CurrentItem as AudioViewModel; }
         }
+
         public ObservableCollection<AudioViewModel> MusicList
         {
             get { return this._musicList; }
@@ -100,8 +101,6 @@ namespace MyWindowsMediaPlayer.ViewModel
             this._musicList = new ObservableCollection<AudioViewModel>();
             this.setFilterCollectionView();
         }
-
-
 
         public ICommand LoadFolderCommand
         {

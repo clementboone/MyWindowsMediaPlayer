@@ -6,11 +6,11 @@
              mc:Ignorable="d" 
              >
     <UniformGrid Columns="6" HorizontalAlignment="Center" Height="30" DataContext="{Binding SelectedTrack}">
-        <Button Content="Previous" Command="{Binding PreviousCommand}" />
-        <Button Content="Pause" />
-        <Button Content="Play" />
-        <Button Content="Stop" />
-        <Button Content="Next" />
+        <Button Content="Previous" Command="{Binding PrevAudio}" />
+        <Button Content="Pause"    Command="{Binding PauseAudio}" />
+        <Button Content="Play"     Command="{Binding PlayAudio}" />
+        <Button Content="Stop"      Command="{Binding StopAudio}" />
+        <Button Content="Next"      Command="{Binding NextAudio}" />
         <Label Content="26:05/30:14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </UniformGrid>
 </UserControl>

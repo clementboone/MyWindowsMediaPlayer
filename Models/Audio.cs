@@ -10,6 +10,12 @@ namespace Player.Audio
         public IAudioPlayer AudioPlayer { get; set; }
         public IAudioTagger AudioTagger { get; set; }
 
+
+        public Audio(string path)
+        {
+            this.Location = path;
+        }
+
         public Audio()
         { }
     }
