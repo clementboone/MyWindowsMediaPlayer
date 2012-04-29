@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Player.Video
 {
-    class BasicVideoPlayer : IVideoPlayer
+    public class BasicVideoPlayer : IVideoPlayer
     {
         
 

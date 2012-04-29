@@ -8,10 +8,6 @@
              Height="Auto" Width="Auto" >
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type ViewModel:AudioViewModel}" >
-            <StackPanel  Orientation="Horizontal">
-                <TextBlock Text="Haha" Margin="0,0,5,0" />
-                <TextBlock Text="{Binding Name}" />
-            </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
@@ -20,17 +16,15 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="0" Text="{Binding Path=Test, Mode=TwoWay}" />
-        <ListView Grid.Row="1" DataContext="{Binding MusicList}"  IsSynchronizedWithCurrentItem="True">
+        <Label Grid.Row="0" Content="{Binding Path=Test, Mode=TwoWay}" />
+        <ListView Grid.Row="1" ItemsSource="{Binding MusicList}" IsSynchronizedWithCurrentItem="True">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Album" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Artist" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Filter" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Lenght" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" />
+                    <GridViewColumn Header="Album" DisplayMemberBinding="{Binding Album}" />
+                    <GridViewColumn Header="Artist" DisplayMemberBinding="{Binding Artist}" />
+                    <GridViewColumn Header="Gender" DisplayMemberBinding="{Binding Genre}" />
                 </GridView>
-
             </ListView.View>
         </ListView>
     </Grid>

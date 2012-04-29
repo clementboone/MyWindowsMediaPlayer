@@ -7,7 +7,7 @@ using Player.Audio;
 
 namespace MyWindowsMediaPlayer.ViewModel
 {
-    class AudioViewModel
+    public class AudioViewModel
     {
         private Audio _currentAudio;
 
@@ -17,37 +17,18 @@ namespace MyWindowsMediaPlayer.ViewModel
         public ICommand PauseAudio{ get; private set; }
         public ICommand StopAudio { get; private set; }
 
-        public string Artist()
-        {
-            return this._currentAudio.AudioTagger.Artist;
-        }
-
-        public string Album()
-        {
-            return this._currentAudio.AudioTagger.Album;
-        }
-
-        public string Title()
-        {
-            return this._currentAudio.AudioTagger.Title;
-        }
-
-        public string Genre() 
-        { 
-            return this._currentAudio.AudioTagger.Genre; 
-        }
-        
-        public short Year() 
-        {
-            return this._currentAudio.AudioTagger.Year;
-        }
-
+        public string Artist { get { return this._currentAudio.AudioTagger.Artist; } }
+        public string Album { get { return this._currentAudio.AudioTagger.Album; } }
+        public string Title { get { return this._currentAudio.AudioTagger.Title; } }
+        public string Genre { get { return this._currentAudio.AudioTagger.Genre; } } 
+        public short Year { get { return this._currentAudio.AudioTagger.Year; } }
 
      
         public AudioViewModel(string path)
         {
             this.CommandSetter();
-            this._currentAudio = new Audio(path);
+            this._currentAudio = new Audio();
+            this._currentAudio.Location = path;
             this._currentAudio.AudioPlayer = new NAudioPlayer(ref this._currentAudio);
             this._currentAudio.AudioTagger = new ID3Tagger(ref this._currentAudio);
         }
@@ -55,8 +36,7 @@ namespace MyWindowsMediaPlayer.ViewModel
         public AudioViewModel(Audio audio)
         {
             this.CommandSetter();
-            //this._currentAudio = audio;
-            this._currentAudio.Location = @"C:\Users\Public\Music\Sample Music\Kalimba.mp3";
+            this._currentAudio = audio;
             this._currentAudio.AudioPlayer = new NAudioPlayer(ref this._currentAudio);
             this._currentAudio.AudioTagger = new ID3Tagger(ref this._currentAudio);
         }

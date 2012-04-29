@@ -25,14 +25,27 @@ namespace MyWindowsMediaPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Admin\\Desktop\\projets\\Visual\\MyWindowsMediaPlayer\\MyWindowsMediaPlayer\\C" +
-            "onf\\Library.xml")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Admin\\Desktop\\projets\\Visual\\Src\\MyWindowsMediaPlayer\\MyWindowsMediaPlay" +
+            "er\\Conf\\Library.xml")]
         public string LibPath {
             get {
                 return ((string)(this["LibPath"]));
             }
             set {
                 this["LibPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Admin\\Desktop\\projets\\Visual\\Src\\MyWindowsMediaPlayer\\MyWindowsMediaPlay" +
+            "er\\Conf\\Library.Musics.xml")]
+        public string MusicPath {
+            get {
+                return ((string)(this["MusicPath"]));
+            }
+            set {
+                this["MusicPath"] = value;
             }
         }
     }

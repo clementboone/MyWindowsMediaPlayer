@@ -7,7 +7,7 @@ using Player.Audio;
 
 namespace Player
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {

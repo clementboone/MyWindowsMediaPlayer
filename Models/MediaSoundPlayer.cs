@@ -6,7 +6,7 @@ using System.Media;
 
 namespace Player.Audio
 {
-    class MediaSoundPlayer : IAudioPlayer
+    public class MediaSoundPlayer : IAudioPlayer
     {
         private Player.Audio.Audio Audio;
         private  System.Media.SoundPlayer Player;

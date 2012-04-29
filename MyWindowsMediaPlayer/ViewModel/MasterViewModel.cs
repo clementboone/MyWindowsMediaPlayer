@@ -78,7 +78,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             this.filterCollectionView = CollectionViewSource.GetDefaultView(this._filterList);
             if (this.filterCollectionView == null)
                 throw new NullReferenceException("filterCollectionView");
-            this.filterCollectionView.CurrentChanged += new EventHandler(this.OnCollectionViewCurrentChanged);
+            this.filterCollectionView.CurrentChanged += new EventHandler(this.OnFilterCollectionViewCurrentChanged);
         }
         private void setMusicCollectionView()
         {
@@ -89,7 +89,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             this.audioCollectionView = CollectionViewSource.GetDefaultView(this._musicList);
             if (this.audioCollectionView == null)
                 throw new NullReferenceException("audioCollectionView");
-            this.audioCollectionView.CurrentChanged += new EventHandler(this.OnCollectionViewCurrentChanged);
+            this.audioCollectionView.CurrentChanged += new EventHandler(this.OnMusicCollectionViewCurrentChanged);
         }
         public MasterViewModel(Window parent)
         {
@@ -155,7 +155,7 @@ namespace MyWindowsMediaPlayer.ViewModel
 
         private void LoadMediaList()
         {
-            this._musicLibrary = new MediaList<Audio>(@"C:\Users\Admin\Desktop\projets\Visual\Src\MyWindowsMediaPlayer\MyWindowsMediaPlayer\Conf\Library.Musics.xml", this.SelectedFilter.Filter);
+            this._musicLibrary = new MediaList<Audio>(Properties.Settings.Default.MusicPath, this.SelectedFilter.Filter);
             this.setMusicCollectionView();
             onProprietyChanged("MusicList");
         }
@@ -176,14 +176,19 @@ namespace MyWindowsMediaPlayer.ViewModel
         {
             var dialog = new System.Windows.Forms.FolderBrowserDialog();
             dialog.ShowDialog();
-            MediaList<Audio> tempList = new MediaList<Audio>(@"C:\Users\Admin\Desktop\projets\Visual\Src\MyWindowsMediaPlayer\MyWindowsMediaPlayer\Conf\Library.Musics.xml", this.SelectedFilter.Filter);
+            MediaList<Audio> tempList = new MediaList<Audio>(Properties.Settings.Default.MusicPath, this.SelectedFilter.Filter);
             if (dialog.SelectedPath != "")
                tempList.loadFolder(dialog.SelectedPath);
         }
 
-        private void OnCollectionViewCurrentChanged(object sender, EventArgs e)
+        private void OnFilterCollectionViewCurrentChanged(object sender, EventArgs e)
         {
-            onProprietyChanged("SelectedPerson");
+            onProprietyChanged("SelectedFilter");
+        }
+
+        private void OnMusicCollectionViewCurrentChanged(object sender, EventArgs e)
+        {
+            onProprietyChanged("SelectedTrack");
         }
     }
 }

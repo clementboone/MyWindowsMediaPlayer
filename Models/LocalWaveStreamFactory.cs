@@ -9,7 +9,7 @@ using BigMansStuff.NAudio.Ogg;
 
 namespace Player.Audio
 {
-    static class LocalWaveStreamFactory
+    public static class LocalWaveStreamFactory
     {
         public static Dictionary<string, Func<string, WaveStream>> openWith { get; private set; }
         static LocalWaveStreamFactory()

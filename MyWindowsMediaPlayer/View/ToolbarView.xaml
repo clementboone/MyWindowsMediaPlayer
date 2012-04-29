@@ -11,6 +11,6 @@
         <Button Content="Play"     Command="{Binding PlayAudio}" />
         <Button Content="Stop"      Command="{Binding StopAudio}" />
         <Button Content="Next"      Command="{Binding NextAudio}" />
-        <Label Content="26:05/30:14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="{Binding Title}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </UniformGrid>
 </UserControl>

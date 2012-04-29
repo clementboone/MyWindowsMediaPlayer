@@ -31,7 +31,6 @@ namespace Player.Audio
         private void CreateInputStream()
         {
             string extension = Path.GetExtension(this.media.Location);
-            Console.WriteLine(extension);
             ICollection keyColl = LocalWaveStreamFactory.openWith.Keys;
             if (LocalWaveStreamFactory.openWith.ContainsKey(extension))
                 this.mainOutputStream = LocalWaveStreamFactory.openWith[extension](media.Location);
@@ -43,13 +42,11 @@ namespace Player.Audio
 
         public void Play()
         {
-            Console.WriteLine("Play");
             this.waveOutDevice.Play();
         }
 
         public void Stop()
         {
-            Console.WriteLine("Stop");
             this.waveOutDevice.Stop();
         }
 
@@ -64,7 +61,6 @@ namespace Player.Audio
 
         public void Pause()
         {
-            Console.WriteLine("Pause");
             this.waveOutDevice.Pause();
         }
 
