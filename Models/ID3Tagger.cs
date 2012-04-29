@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using HundredMilesSoftware.UltraID3Lib;
 
-namespace Models
+namespace Player.Audio
 {
     class ID3Tagger : IAudioTagger
     {
