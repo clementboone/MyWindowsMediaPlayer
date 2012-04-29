@@ -17,13 +17,39 @@ namespace MyWindowsMediaPlayer.ViewModel
         public ICommand PauseAudio{ get; private set; }
         public ICommand StopAudio { get; private set; }
 
+        public string Artist()
+        {
+            return this._currentAudio.AudioTagger.Artist;
+        }
+
+        public string Album()
+        {
+            return this._currentAudio.AudioTagger.Album;
+        }
+
+        public string Title()
+        {
+            return this._currentAudio.AudioTagger.Title;
+        }
+
+        public string Genre() 
+        { 
+            return this._currentAudio.AudioTagger.Genre; 
+        }
+        
+        public short Year() 
+        {
+            return this._currentAudio.AudioTagger.Year;
+        }
+
+
      
         public AudioViewModel(string path)
         {
             this.CommandSetter();
             this._currentAudio = new Audio(path);
             this._currentAudio.AudioPlayer = new NAudioPlayer(ref this._currentAudio);
-
+            this._currentAudio.AudioTagger = new ID3Tagger(ref this._currentAudio);
         }
 
         public AudioViewModel(Audio audio)
@@ -32,6 +58,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             //this._currentAudio = audio;
             this._currentAudio.Location = @"C:\Users\Public\Music\Sample Music\Kalimba.mp3";
             this._currentAudio.AudioPlayer = new NAudioPlayer(ref this._currentAudio);
+            this._currentAudio.AudioTagger = new ID3Tagger(ref this._currentAudio);
         }
 
         private void CommandSetter()

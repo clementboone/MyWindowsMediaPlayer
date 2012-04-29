@@ -6,7 +6,7 @@ using HundredMilesSoftware.UltraID3Lib;
 
 namespace Player.Audio
 {
-    class ID3Tagger : IAudioTagger
+    public class ID3Tagger : IAudioTagger
     {
         UltraID3 UltraID3;
 
