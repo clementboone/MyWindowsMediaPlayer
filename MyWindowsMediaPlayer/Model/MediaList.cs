@@ -16,10 +16,12 @@ namespace MyWindowsMediaPlayer.Model
 
         private void loadMedias(string filter)
         {
-            IEnumerable<XElement> categories = from element in this._xmlDocument.Elements().Elements()
+            IEnumerable<XElement> medias = from element in this._xmlDocument.Elements().Elements()
                                                select element;
+            if (medias == null)
+                return;
             File newFile = null;
-            foreach (XElement line in categories)
+            foreach (XElement line in medias)
             {
                 if (line.Attribute("path") != null)
                 {
@@ -33,17 +35,20 @@ namespace MyWindowsMediaPlayer.Model
         {
             this._filePath = path;
             this._filter = filter;
+            this._mediasList = new List<File>();
             this._category = filter.getCategory();
+            foreach (string ext in this._category.Extentions)
+                Console.WriteLine("Extention : " + ext);
             this.loadFile(this._filePath);
             this.loadMedias(filter.Name);
         }
-
         private string[] fileList(string path)
         {
             string[] filePaths = {};
             foreach (string extention in this._category.Extentions)
             {
-                filePaths.Concat(Directory.GetFiles(path, "*." + extention, SearchOption.AllDirectories));
+                Console.WriteLine("Extention : " + extention);
+                filePaths = filePaths.Union(Directory.GetFiles(path, "*." + extention, SearchOption.AllDirectories)).ToArray<string>();
             }
             return filePaths;
         }
@@ -53,7 +58,7 @@ namespace MyWindowsMediaPlayer.Model
             newNode.SetAttributeValue("path", newMedia.Name);
             return this.addElementToNode(newNode, this._xmlDocument.Elements().First());
         }
-        public int loadFiles(string path)
+        public int loadFolder(string path)
         {
             int nbNewMedia = 0;
             foreach (string newFile in this.fileList(path))
@@ -65,6 +70,9 @@ namespace MyWindowsMediaPlayer.Model
                     nbNewMedia++;
                 }
             }
+            if (nbNewMedia > 0)
+                this.saveDocument();
+            Console.WriteLine("Loaded : " + nbNewMedia + " Total : " + this._mediasList.Count);
             return nbNewMedia;
         }
     }

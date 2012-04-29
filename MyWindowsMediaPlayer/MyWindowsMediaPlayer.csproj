@@ -135,7 +135,9 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Conf\Library.Musics.xml" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Conf\Library.xml">
       <SubType>Designer</SubType>

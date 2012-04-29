@@ -11,7 +11,7 @@
 
             <StackPanel  Orientation="Horizontal">
                 <StackPanel.InputBindings>
-                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding DoubleClickCommand}" />
+                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding LoadMediaListCommand}" />
                 </StackPanel.InputBindings>
                 <TextBlock Text="{Binding Level}" Margin="0,0,5,0" />
                 <TextBlock Text="{Binding Name}" />
@@ -32,10 +32,10 @@
         <ListView Grid.Row="1" ItemsSource="{Binding FilterList}" IsSynchronizedWithCurrentItem="True">
         </ListView>
         <UniformGrid Columns="4">
-            <Button Content="Delete" Command="{Binding }" />
-            <Button Content="Load" Command="{Binding LoadFolderCommand}" />
+            <Button Content="Rename" Command="{Binding RenameCommand}" />
+            <Button Content="Import" Command="{Binding LoadFolderCommand}" />
             <Button Content="New Filter" Command="{Binding NewFilterCommand}" />
-            <Button Content="Edit" Command="{Binding }" />
+            <Button Content="Load" Command="{Binding LoadMediaListCommand}" />
         </UniformGrid>
 
     </Grid>

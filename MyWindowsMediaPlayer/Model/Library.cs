@@ -29,14 +29,25 @@ namespace MyWindowsMediaPlayer.Model
             {
                 string extention = (xmlNode.Attribute("extentions") != null ? xmlNode.Attribute("extentions").Value : "");
                 string type = (xmlNode.Attribute("type") != null ? xmlNode.Attribute("type").Value : "");
-                string path = Path.ChangeExtension(this._filePath, "") + "_" + filterName + ".xml";
-                newFilter = new Category(filterName, path, extention, type);
+                // string path = Path.ChangeExtension(this._filePath, "") + "_" + filterName + ".xml";
+                newFilter = new Category(filterName, extention, type);
             }
             else
             {
                 newFilter=  new Filter(filterName, parent);
             }
             return newFilter;
+        }
+        private Filter createNewFilter(XElement line, Filter parent)
+        {
+            if (parent == null)
+                return new Category(
+                    line.Attribute("name").Value,
+                    line.Attribute("extentions") != null ? line.Attribute("extentions").Value : "",
+                    line.Attribute("type") != null ? line.Attribute("type").Value : ""
+                    );
+            else
+                return new Filter(line.Attribute("name").Value, parent);
         }
         private List<Filter> loadFilters(IEnumerable<XElement> filters, Filter parent)
         {
@@ -48,7 +59,7 @@ namespace MyWindowsMediaPlayer.Model
                 {
                     if (element.Attribute("name") != null)
                     {
-                        tempFilter = new Filter(element.Attribute("name").Value, parent);
+                        tempFilter = this.createNewFilter(element, parent);
                         if (element.Elements() != null)
                             tempFilter.Filters = this.loadFilters(element.Elements(), tempFilter);
                         tempList.Add(tempFilter);
@@ -60,10 +71,17 @@ namespace MyWindowsMediaPlayer.Model
         }
         private List<Filter> loadCategories()
         {
-            IEnumerable<XElement> categories = from element in this._xmlDocument.Elements()
-                                                select element;
-
-            return this.loadFilters(categories.Elements(), null);
+            IEnumerable<XElement> categories = null;
+            try
+            {
+                categories = from element in this._xmlDocument.Elements().Elements()
+                                                   select element;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine("Library.loadCategories() fail. err : " + exception.Message);
+            }
+            return this.loadFilters(categories, null);
         }
         public Library(string path = "")
         {

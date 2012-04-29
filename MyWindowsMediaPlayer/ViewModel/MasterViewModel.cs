@@ -17,6 +17,7 @@ namespace MyWindowsMediaPlayer.ViewModel
         private readonly ObservableCollection<FilterViewModel> _filterList;
         private ICollectionView collectionView;
         private ICommand loadCommand;
+        private MediaList _musicList;
         private ICommand newFilterCommand;
         public string NewName { get; set; }
         public FilterViewModel SelectedFilter
@@ -28,6 +29,7 @@ namespace MyWindowsMediaPlayer.ViewModel
         {
             this._parent = parent;
             this._library = new Library();
+            this._musicList = null;
             this._filterList = new ObservableCollection<FilterViewModel>();
             foreach (Filter category in this._library.Categories)
             {
@@ -72,7 +74,7 @@ namespace MyWindowsMediaPlayer.ViewModel
         }
         private bool IsCategoryFolder()
         {
-            if (this.SelectedFilter.Parent == null)
+            if (this.SelectedFilter != null && this.SelectedFilter.Parent == null)
                 return true;
             return false;
         }
@@ -89,11 +91,11 @@ namespace MyWindowsMediaPlayer.ViewModel
         {
             var dialog = new System.Windows.Forms.FolderBrowserDialog();
             dialog.ShowDialog();
-
-            Console.WriteLine(this.NewName + " " + dialog.SelectedPath);
+            if (this._musicList == null)
+                this._musicList = new MediaList(@"C:\Users\Admin\Desktop\projets\Visual\MyWindowsMediaPlayer\MyWindowsMediaPlayer\Conf\Library.Musics.xml", this.SelectedFilter.Filter);
+            if (dialog.SelectedPath != "")
+                this._musicList.loadFolder(dialog.SelectedPath);
         }
-
-
 
         private void OnCollectionViewCurrentChanged(object sender, EventArgs e)
         {

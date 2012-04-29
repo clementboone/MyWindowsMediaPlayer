@@ -13,6 +13,7 @@ namespace MyWindowsMediaPlayer.ViewModel
         private Filter _filter;
         private ICommand infoCommand;
 
+        public Filter Filter { get { return this._filter;  } }
         public string Name
         {
             get

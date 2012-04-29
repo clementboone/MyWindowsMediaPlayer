@@ -11,7 +11,7 @@ namespace MyWindowsMediaPlayer.Model
         public string Type { get; private set; }
 
 
-        public Category(string name, string path, string extentions, string type)
+        public Category(string name, string extentions, string type)
             : base(name, null)
         {
             string[] tempExtentionTab = extentions.Split(',');
