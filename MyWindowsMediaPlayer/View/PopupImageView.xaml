@@ -3,6 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="PopupImageView" Height="300" Width="300">
     <Grid DataContext="{Binding CurrentImage}">
-        <Image Height="150" HorizontalAlignment="Left" Margin="443,102,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="200" Source="C:\Users\Admin\Desktop\projets\Heroes\img\Lorena.gif"/>
+        <Image Height="150" HorizontalAlignment="Left" Margin="443,102,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="200" Source="{Binding ImagePath}"/>
     </Grid>
 </Window>

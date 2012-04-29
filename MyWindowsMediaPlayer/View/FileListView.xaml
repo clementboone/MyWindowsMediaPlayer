@@ -6,10 +6,7 @@
              xmlns:ViewModel="clr-namespace:MyWindowsMediaPlayer.ViewModel"
              mc:Ignorable="d" 
              Height="Auto" Width="Auto" >
-    <UserControl.Resources>
-        <DataTemplate DataType="{x:Type ViewModel:AudioViewModel}" >
-        </DataTemplate>
-    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -17,13 +14,22 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Content="Media List" />
-        <ListView Grid.Row="1" ItemsSource="{Binding MusicList}" IsSynchronizedWithCurrentItem="True">
+        <ListView Name="MusicListView" Grid.Row="1" ItemsSource="{Binding MusicList}" IsSynchronizedWithCurrentItem="True">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" />
                     <GridViewColumn Header="Album" DisplayMemberBinding="{Binding Album}" />
                     <GridViewColumn Header="Artist" DisplayMemberBinding="{Binding Artist}" />
                     <GridViewColumn Header="Gender" DisplayMemberBinding="{Binding Genre}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView Name="ImageListView" Grid.Row="2" ItemsSource="{Binding ImageList}" IsSynchronizedWithCurrentItem="True">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}">
+                        
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

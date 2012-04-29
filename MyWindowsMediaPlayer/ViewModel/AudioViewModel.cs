@@ -7,7 +7,7 @@ using Player.Audio;
 
 namespace MyWindowsMediaPlayer.ViewModel
 {
-    public class AudioViewModel
+    public class AudioViewModel : MediaViewModel
     {
         private Audio _currentAudio;
 

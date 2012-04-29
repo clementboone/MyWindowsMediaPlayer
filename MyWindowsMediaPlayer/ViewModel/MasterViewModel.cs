@@ -27,7 +27,19 @@ namespace MyWindowsMediaPlayer.ViewModel
         {
             get { return this._filterList; }
         }
-
+        private string _musicVisibility;
+        public string MusicVisibility
+        {
+            get
+            {
+                return this._musicVisibility;
+            }
+            set
+            {
+                this._musicVisibility = value;
+                onProprietyChanged("MusicVisibility");
+            }
+        }
         private MediaList<Audio> _musicLibrary;
         private readonly ObservableCollection<AudioViewModel> _musicList;
         private ICollectionView audioCollectionView;
@@ -39,6 +51,32 @@ namespace MyWindowsMediaPlayer.ViewModel
         public ObservableCollection<AudioViewModel> MusicList
         {
             get { return this._musicList; }
+        }
+
+        private string _imageVisibility;
+        public string ImageVisibility
+        {
+            get
+            {
+                return this._imageVisibility;
+            }
+            set
+            {
+                this._imageVisibility = value;
+                onProprietyChanged("ImageVisibility");
+            }
+        }
+        private MediaList<Image> _imageLibrary;
+        private readonly ObservableCollection<ImageViewModel> _imageList;
+        private ICollectionView imageCollectionView;
+        public ImageViewModel SelectedImage
+        {
+            get { return (this.imageCollectionView != null && this.imageCollectionView.CurrentItem != null) ? this.imageCollectionView.CurrentItem as ImageViewModel : null; }
+        }
+
+        public ObservableCollection<ImageViewModel> ImageList
+        {
+            get { return this._imageList; }
         }
 
         private ICommand newFilterCommand;
@@ -78,13 +116,27 @@ namespace MyWindowsMediaPlayer.ViewModel
                 throw new NullReferenceException("audioCollectionView");
             this.audioCollectionView.CurrentChanged += new EventHandler(this.OnMusicCollectionViewCurrentChanged);
         }
+        private void setImageCollectionView()
+        {
+            foreach (Image model in this._imageLibrary.MediasList)
+            {
+                this._imageList.Add(new ImageViewModel(model.Location));
+            }
+            this.imageCollectionView = CollectionViewSource.GetDefaultView(this._imageList);
+            if (this.imageCollectionView == null)
+                throw new NullReferenceException("imageCollectionView");
+            this.imageCollectionView.CurrentChanged += new EventHandler(this.OnImageCollectionViewCurrentChanged);
+        }
         public MasterViewModel(Window parent)
         {
             this._parent = parent;
             this._library = new Library();
             this._musicList = null;
+            this.ImageVisibility = "Hidden";
+            this.MusicVisibility = "Visible";
             this._filterList = new ObservableCollection<FilterViewModel>();
             this._musicList = new ObservableCollection<AudioViewModel>();
+            this._imageList = new ObservableCollection<ImageViewModel>();
             this.setFilterCollectionView();
         }
 
@@ -145,10 +197,22 @@ namespace MyWindowsMediaPlayer.ViewModel
 
         private void LoadMediaList()
         {
+            this._imageList.Clear();
             this._musicList.Clear();
-            this._musicLibrary = new MediaList<Audio>(Properties.Settings.Default.MusicPath, this.SelectedFilter.Filter);
-            this.setMusicCollectionView();
-            onProprietyChanged("MusicList");
+            switch (((Category)this.SelectedFilter.Filter).Type)
+            {
+                case "audio":
+                    this._musicLibrary = new MediaList<Audio>(Properties.Settings.Default.MusicPath, this.SelectedFilter.Filter);
+                    this.setMusicCollectionView();
+                    onProprietyChanged("MusicList");
+                    break;
+                case "picture":
+                    this._imageLibrary = new MediaList<Image>(Properties.Settings.Default.ImagePath, this.SelectedFilter.Filter);
+                    this.setImageCollectionView();
+                    onProprietyChanged("ImageList");
+                    break;
+
+            }
         }
 
         private bool IsCategoryFolder()
@@ -167,9 +231,23 @@ namespace MyWindowsMediaPlayer.ViewModel
         {
             var dialog = new System.Windows.Forms.FolderBrowserDialog();
             dialog.ShowDialog();
-            MediaList<Audio> tempList = new MediaList<Audio>(Properties.Settings.Default.MusicPath, this.SelectedFilter.Filter);
-            if (dialog.SelectedPath != "")
-                tempList.loadFolder(dialog.SelectedPath);
+            switch (((Category)this.SelectedFilter.Filter).Type)
+            {
+                case "audio":
+                    MediaList<Audio> tempAudioList = new MediaList<Audio>(Properties.Settings.Default.MusicPath, this.SelectedFilter.Filter);
+                    this.ImageVisibility = "Hidden";
+                    this.MusicVisibility = "Visible";
+                    if (dialog.SelectedPath != "")
+                        tempAudioList.loadFolder(dialog.SelectedPath);
+                    break;
+                case "picture":
+                    MediaList<Image> tempImageList = new MediaList<Image>(Properties.Settings.Default.ImagePath, this.SelectedFilter.Filter);
+                    this.ImageVisibility = "Visible";
+                    this.MusicVisibility = "Hidden";
+                    if (dialog.SelectedPath != "")
+                        tempImageList.loadFolder(dialog.SelectedPath);
+                    break;
+            }
         }
 
         private void OnFilterCollectionViewCurrentChanged(object sender, EventArgs e)
@@ -180,6 +258,15 @@ namespace MyWindowsMediaPlayer.ViewModel
         private void OnMusicCollectionViewCurrentChanged(object sender, EventArgs e)
         {
             onProprietyChanged("SelectedTrack");
+        }
+        private void OnImageCollectionViewCurrentChanged(object sender, EventArgs e)
+        {
+            this.OpenImage();
+            onProprietyChanged("SelectedImage");
+        }
+        private void OpenImage()
+        {
+            
         }
     }
 }

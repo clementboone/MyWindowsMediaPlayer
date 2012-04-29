@@ -5,7 +5,7 @@
         Title="My Windows Media Player" 
         MinHeight="370" MinWidth="727"
         Height="370" Width="727">
-    <Grid Width="727">
+    <Grid Width="665">
         <View:MasterView x:Name="MasterView" VerticalAlignment="Top" HorizontalAlignment="Left" Padding="10,10,10,10" />
         <View:FileListView x:Name="FileListView" VerticalAlignment="Top" Margin="264,0,0,0" HorizontalAlignment="Left" Padding="10,10,10,10" />
         <View:ToolbarView x:Name="ToolbarView" VerticalAlignment="Bottom" HorizontalAlignment="Center" Padding="10,10,10,10"/>

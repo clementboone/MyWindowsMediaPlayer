@@ -71,6 +71,7 @@
     <Compile Include="ViewModel\FilterViewModel.cs" />
     <Compile Include="ViewModel\ImageViewModel.cs" />
     <Compile Include="ViewModel\MasterViewModel.cs" />
+    <Compile Include="ViewModel\MediaViewModel.cs" />
     <Compile Include="ViewModel\MusicListViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />

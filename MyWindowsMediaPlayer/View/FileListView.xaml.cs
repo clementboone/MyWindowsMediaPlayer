@@ -23,5 +23,11 @@ namespace MyWindowsMediaPlayer.View
         {
             InitializeComponent();
         }
+
+        private void DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Console.WriteLine("DoubleClickDoubleClickDoubleClick");
+        }
+
     }
 }

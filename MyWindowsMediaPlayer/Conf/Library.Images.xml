@@ -1,3 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <mediaList>
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\town\h2_barbarian.gif" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\town\h2_knight.gif" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\town\h2_necromancer.gif" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\town\h2_sorceress.gif" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\town\h2_warlock.gif" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\town\h2_wizard.gif" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\town\h3_castlep.jpg" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\town\h3_dungeon.jpg" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\town\h3_fortress.jpg" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\town\h3_inferno.jpg" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\town\h3_necropolis.jpg" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\town\h3_rampart.jpg" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\town\h3_stronghold.jpg" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\town\h3_tower.jpg" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\town\h4_chaostown.jpg" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\town\h4_deathtown.jpg" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\town\h4_lifetown.jpg" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\town\h4_mighttown.jpg" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\town\h4_naturetown.jpg" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\town\h4_ordertown.jpg" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\images\02_01.gif" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\images\02_02.gif" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\images\02_03.gif" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\images\02_04.gif" />
+  <file path="C:\Users\Admin\Desktop\projets\Heroes\img\images\02_05.gif" />
 </mediaList>
