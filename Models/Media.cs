@@ -5,17 +5,23 @@ using System.Text;
 
 namespace Player
 {
-    class Media
+    public class Media
     {
         public  int NbPlayed { get; set; }
         public  int Rating { get; set; }
         public DateTime lastPlay { get; set; }
-        public string Location { get; private set; }
-        
-        
-        public Media(string location)
-        {
-            this.Location = location;
+        private string _location = null;
+        public string Location {
+            get
+            {
+                return this._location;
+            }
+            set
+            {
+                if (this._location == null)
+                    this._location = value;
+            }
         }
+
     }
 }

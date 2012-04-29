@@ -66,7 +66,7 @@ namespace MyWindowsMediaPlayer.ViewModel
 
         public void DoubleClick()
         {
-            Console.WriteLine("Super " + this.Name);
+
         }
     }
 }

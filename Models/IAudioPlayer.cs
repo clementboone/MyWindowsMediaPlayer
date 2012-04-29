@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Player.Audio
 {
-    interface IAudioPlayer : IDisposable
+    public interface IAudioPlayer : IDisposable
     {
         void Play();
         void Stop();

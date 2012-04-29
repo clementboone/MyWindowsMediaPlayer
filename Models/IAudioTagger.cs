@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Player.Audio
 {
-    interface IAudioTagger
+    public interface IAudioTagger
     {
         string Artist{ get; set; }
         string Album { get; set; }

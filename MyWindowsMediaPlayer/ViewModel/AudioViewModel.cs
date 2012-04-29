@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+<<<<<<< HEAD
 using System.Windows.Input;
+=======
+
+>>>>>>> a10378bed8cefddc23bbc91dfd434d625bcea4a1
 using Player.Audio;
 
 namespace MyWindowsMediaPlayer.ViewModel
 {
     class AudioViewModel
     {
+<<<<<<< HEAD
         private Audio _currentAudio;
       
         public ICommand PlayAudio { get; private set; }
@@ -53,6 +58,14 @@ namespace MyWindowsMediaPlayer.ViewModel
         private void PerformPauseAudio()
         {
             Console.WriteLine("PAUSE");
+=======
+        private Audio _track;
+        public string Name { get { return this._track.ToString(); } }
+
+        public AudioViewModel(Audio track)
+        {
+            this._track = track;
+>>>>>>> a10378bed8cefddc23bbc91dfd434d625bcea4a1
         }
     }
 }

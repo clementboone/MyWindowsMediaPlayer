@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Player
 {
-    interface IVideoPlayer
+    public interface IVideoPlayer
     {
        void play();
        void stop();

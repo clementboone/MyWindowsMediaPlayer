@@ -7,12 +7,9 @@
              mc:Ignorable="d" 
              Height="Auto" Width="Auto" >
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type ViewModel:FileViewModel}" >
+        <DataTemplate DataType="{x:Type ViewModel:AudioViewModel}" >
             <StackPanel  Orientation="Horizontal">
-                <StackPanel.InputBindings>
-                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding DoubleClickCommand}" />
-                </StackPanel.InputBindings>
-                <TextBlock Text="{Binding Level}" Margin="0,0,5,0" />
+                <TextBlock Text="Haha" Margin="0,0,5,0" />
                 <TextBlock Text="{Binding Name}" />
             </StackPanel>
         </DataTemplate>
@@ -23,8 +20,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="Liste" />
-        <ListView Grid.Row="1" >
+        <TextBox Grid.Row="0" Text="{Binding Path=Test, Mode=TwoWay}" />
+        <ListView Grid.Row="1" DataContext="{Binding MusicList}"  IsSynchronizedWithCurrentItem="True">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
