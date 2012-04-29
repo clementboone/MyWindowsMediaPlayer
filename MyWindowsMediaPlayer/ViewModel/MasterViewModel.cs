@@ -33,7 +33,7 @@ namespace MyWindowsMediaPlayer.ViewModel
         private ICollectionView audioCollectionView;
         public AudioViewModel SelectedTrack
         {
-            get { return this.audioCollectionView.CurrentItem as AudioViewModel; }
+            get { return (this.audioCollectionView != null && this.audioCollectionView.CurrentItem != null) ? this.audioCollectionView.CurrentItem as AudioViewModel : null;  }
         }
 
         public ObservableCollection<AudioViewModel> MusicList
