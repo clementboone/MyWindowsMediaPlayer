@@ -1,9 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <library>
-  <category name="Musics" extentions="mp3,flac,wav,wma,oggs" type="audio">
-    <filter name="Love" />
-    <filter name="Bad" />
+  <category name="Musics" extentions="mp3,flac,wav,oggs" type="audio">
   </category>
-  <category name="Images" type="picture"></category>
-  <category name="Movies" type="video"></category>
+  <category name="Images" extentions="gif,jpg,png" type="picture"></category>
+  <category name="Movies" extentions="avi,mv" type="video"></category>
 </library>

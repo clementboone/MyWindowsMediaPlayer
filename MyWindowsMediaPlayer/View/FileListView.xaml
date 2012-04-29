@@ -16,7 +16,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="{Binding Path=Test, Mode=TwoWay}" />
+        <Label Grid.Row="0" Content="Media List" />
         <ListView Grid.Row="1" ItemsSource="{Binding MusicList}" IsSynchronizedWithCurrentItem="True">
             <ListView.View>
                 <GridView>

@@ -16,7 +16,7 @@ namespace MyWindowsMediaPlayer.ViewModel
     class MasterViewModel : ViewModelBase
     {
         private Window _parent;
-        private readonly Library _library;
+        private Library _library;
         private readonly ObservableCollection<FilterViewModel> _filterList;
         private ICollectionView filterCollectionView;
         public FilterViewModel SelectedFilter
@@ -39,19 +39,6 @@ namespace MyWindowsMediaPlayer.ViewModel
         public ObservableCollection<AudioViewModel> MusicList
         {
             get { return this._musicList; }
-        }
-        private string test;
-        public string Test
-        {
-            get
-            {
-                return this.test;
-            }
-            set
-            {
-                this.test = value;
-                onProprietyChanged("Test");
-            }
         }
 
         private ICommand newFilterCommand;
@@ -96,7 +83,6 @@ namespace MyWindowsMediaPlayer.ViewModel
             this._parent = parent;
             this._library = new Library();
             this._musicList = null;
-            this.Test = "Cacao";
             this._filterList = new ObservableCollection<FilterViewModel>();
             this._musicList = new ObservableCollection<AudioViewModel>();
             this.setFilterCollectionView();
@@ -117,7 +103,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             get
             {
                 if (this.newFilterCommand == null)
-                    this.newFilterCommand = new RelayCommand(() => this.NewFilter(), () => this.IsCategoryFolder());
+                    this.newFilterCommand = new RelayCommand(() => this.NewFilter(), () => false);
 
                 return this.newFilterCommand;
             }
@@ -137,24 +123,29 @@ namespace MyWindowsMediaPlayer.ViewModel
             get
             {
                 if (this.renameCommand == null)
-                    this.renameCommand = new RelayCommand(() => this.Rename());
+                    this.renameCommand = new RelayCommand(() => this.LoadLib());
 
                 return this.renameCommand;
             }
         }
 
-        private void Rename()
+        private void LoadLib()
         {
-            Console.WriteLine("Rename");
-            if (this.Test == "Cacao")
-                this.Test = "Chocola";
-            else
-                this.Test = "Cacao";
-        }
+            var dialog = new System.Windows.Forms.OpenFileDialog();
+            dialog.DefaultExt = "xml";
+            dialog.ShowDialog();
+            if (dialog.FileName != "")
+            {
 
+                this._filterList.Clear();
+                this._library = new Library(dialog.FileName);
+                this.setFilterCollectionView();
+            }
+        }
 
         private void LoadMediaList()
         {
+            this._musicList.Clear();
             this._musicLibrary = new MediaList<Audio>(Properties.Settings.Default.MusicPath, this.SelectedFilter.Filter);
             this.setMusicCollectionView();
             onProprietyChanged("MusicList");
@@ -178,7 +169,7 @@ namespace MyWindowsMediaPlayer.ViewModel
             dialog.ShowDialog();
             MediaList<Audio> tempList = new MediaList<Audio>(Properties.Settings.Default.MusicPath, this.SelectedFilter.Filter);
             if (dialog.SelectedPath != "")
-               tempList.loadFolder(dialog.SelectedPath);
+                tempList.loadFolder(dialog.SelectedPath);
         }
 
         private void OnFilterCollectionViewCurrentChanged(object sender, EventArgs e)

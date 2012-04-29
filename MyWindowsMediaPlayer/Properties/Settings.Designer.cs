@@ -25,8 +25,7 @@ namespace MyWindowsMediaPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Admin\\Desktop\\projets\\Visual\\Src\\MyWindowsMediaPlayer\\MyWindowsMediaPlay" +
-            "er\\Conf\\Library.xml")]
+        [global::System.Configuration.DefaultSettingValueAttribute("../../Conf\\Library.xml")]
         public string LibPath {
             get {
                 return ((string)(this["LibPath"]));
@@ -38,14 +37,37 @@ namespace MyWindowsMediaPlayer.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Admin\\Desktop\\projets\\Visual\\Src\\MyWindowsMediaPlayer\\MyWindowsMediaPlay" +
-            "er\\Conf\\Library.Musics.xml")]
+        [global::System.Configuration.DefaultSettingValueAttribute("../../Conf\\Library.Musics.xml")]
         public string MusicPath {
             get {
                 return ((string)(this["MusicPath"]));
             }
             set {
                 this["MusicPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("../../Conf\\Library.Images.xml")]
+        public string ImagePath {
+            get {
+                return ((string)(this["ImagePath"]));
+            }
+            set {
+                this["ImagePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("../../Conf\\Library.Videos.xml")]
+        public string VideoPath {
+            get {
+                return ((string)(this["VideoPath"]));
+            }
+            set {
+                this["VideoPath"] = value;
             }
         }
     }

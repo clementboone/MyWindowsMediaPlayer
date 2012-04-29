@@ -3,10 +3,16 @@
   <Profiles />
   <Settings>
     <Setting Name="LibPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Admin\Desktop\projets\Visual\Src\MyWindowsMediaPlayer\MyWindowsMediaPlayer\Conf\Library.xml</Value>
+      <Value Profile="(Default)">../../Conf\Library.xml</Value>
     </Setting>
     <Setting Name="MusicPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Admin\Desktop\projets\Visual\Src\MyWindowsMediaPlayer\MyWindowsMediaPlayer\Conf\Library.Musics.xml</Value>
+      <Value Profile="(Default)">../../Conf\Library.Musics.xml</Value>
+    </Setting>
+    <Setting Name="ImagePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">../../Conf\Library.Images.xml</Value>
+    </Setting>
+    <Setting Name="VideoPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">../../Conf\Library.Videos.xml</Value>
     </Setting>
   </Settings>
 </SettingsFile>

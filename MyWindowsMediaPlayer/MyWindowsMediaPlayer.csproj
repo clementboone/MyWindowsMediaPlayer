@@ -59,6 +59,7 @@
     </ApplicationDefinition>
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\File.cs" />
+    <Compile Include="Model\Image.cs" />
     <Compile Include="Model\MediaList.cs" />
     <Compile Include="Model\Filter.cs" />
     <Compile Include="Model\XmlObject.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="ViewModel\AudioViewModel.cs" />
     <Compile Include="ViewModel\FileViewModel.cs" />
     <Compile Include="ViewModel\FilterViewModel.cs" />
+    <Compile Include="ViewModel\ImageViewModel.cs" />
     <Compile Include="ViewModel\MasterViewModel.cs" />
     <Compile Include="ViewModel\MusicListViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
@@ -77,6 +79,9 @@
     </Compile>
     <Compile Include="View\MasterView.xaml.cs">
       <DependentUpon>MasterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PopupImageView.xaml.cs">
+      <DependentUpon>PopupImageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PopupTextView.xaml.cs">
       <DependentUpon>PopupTextView.xaml</DependentUpon>
@@ -101,6 +106,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MasterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PopupImageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -151,6 +160,12 @@
       <Project>{454459DA-F693-4283-BE01-0E040B91D88B}</Project>
       <Name>Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Conf\Library.Images.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Conf\Library.Movies.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
