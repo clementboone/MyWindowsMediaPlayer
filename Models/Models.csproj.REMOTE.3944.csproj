@@ -6,11 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{454459DA-F693-4283-BE01-0E040B91D88B}</ProjectGuid>
-<<<<<<< HEAD
-    <OutputType>Library</OutputType>
-=======
     <OutputType>Exe</OutputType>
->>>>>>> 418c3e862f0453eb3de7787a9ec9f7d9bff29f13
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Player</RootNamespace>
     <AssemblyName>Player</AssemblyName>
@@ -53,12 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-<<<<<<< HEAD
-    <StartupObject>
-    </StartupObject>
-=======
     <StartupObject>Player.Program</StartupObject>
->>>>>>> 418c3e862f0453eb3de7787a9ec9f7d9bff29f13
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NAudio">
