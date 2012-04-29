@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Media;
 
-namespace Models
+namespace Player.Audio
 {
     class MediaSoundPlayer : IAudioPlayer
     {
-        private Models.Audio Audio;
+        private Player.Audio.Audio Audio;
         private  System.Media.SoundPlayer Player;
 
-        public MediaSoundPlayer(ref Models.Audio audio)
+        public MediaSoundPlayer(ref Player.Audio.Audio audio)
         {
             this.Audio = audio;
             this.Player = new System.Media.SoundPlayer(audio.Location);

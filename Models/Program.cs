@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using Player.Audio;
 
-namespace Models
+namespace Player
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Audio audio = new Audio(@"C:\Users\Public\Music\Sample Music\Kalimba.mp3");
+            Player.Audio.Audio audio = new Player.Audio.Audio(@"C:\Users\Public\Music\Sample Music\Kalimba.mp3");
             audio.AudioPlayer = new NAudioPlayer(ref audio);
             audio.AudioTagger = new ID3Tagger(ref audio);
             Console.WriteLine("Artiste = " + audio.AudioTagger.Artist);

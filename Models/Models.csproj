@@ -8,8 +8,8 @@
     <ProjectGuid>{454459DA-F693-4283-BE01-0E040B91D88B}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Models</RootNamespace>
-    <AssemblyName>Models</AssemblyName>
+    <RootNamespace>Player</RootNamespace>
+    <AssemblyName>Player</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Models.Program</StartupObject>
+    <StartupObject>Player.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NAudio">

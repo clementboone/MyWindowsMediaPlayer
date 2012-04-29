@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace Models
+namespace Player.Video
 {
     class BasicVideoPlayer : IVideoPlayer
     {

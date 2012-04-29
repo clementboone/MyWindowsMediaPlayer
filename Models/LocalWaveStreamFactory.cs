@@ -7,7 +7,7 @@ using NAudio.Wave;
 using BigMansStuff.NAudio.FLAC;
 using BigMansStuff.NAudio.Ogg;
 
-namespace Models
+namespace Player.Audio
 {
     static class LocalWaveStreamFactory
     {
