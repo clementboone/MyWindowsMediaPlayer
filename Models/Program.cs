@@ -10,9 +10,13 @@ namespace Models
     {
         static void Main(string[] args)
         {
-           Video    video = new Video(@"C:\Users\Public\Videos\Sample Videos\Wildlife.wmv");
-           video.VideoPlayer = new BasicVideoPlayer(video);
-           video.VideoPlayer.play();
+            Audio audio = new Audio(@"C:\Users\Public\Music\Sample Music\Kalimba.mp3");
+            audio.AudioPlayer = new NAudioPlayer(ref audio);
+            audio.AudioTagger = new ID3Tagger(ref audio);
+            Console.WriteLine("Artiste = " + audio.AudioTagger.Artist);
+            audio.AudioPlayer.Play();
+            System.Threading.Thread.Sleep(5000);
+            audio.AudioPlayer.Dispose();
         }
     }
 }

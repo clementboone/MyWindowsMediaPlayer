@@ -7,9 +7,9 @@ namespace Models
 {
     class Media
     {
-        public  int NbPlayed { get; private set; }
-        public  int Rating { get; private set; }
-        public DateTime lastPlay { get; private set; }
+        public  int NbPlayed { get; set; }
+        public  int Rating { get; set; }
+        public DateTime lastPlay { get; set; }
         public string Location { get; private set; }
         
         
