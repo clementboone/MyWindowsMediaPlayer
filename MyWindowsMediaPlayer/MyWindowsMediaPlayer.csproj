@@ -64,9 +64,12 @@
     <Compile Include="Model\XmlObject.cs" />
     <Compile Include="Model\XmlFile.cs" />
     <Compile Include="Model\Library.cs" />
+    <Compile Include="Video.cs" />
+    <Compile Include="ViewModel\AudioViewModel.cs" />
     <Compile Include="ViewModel\FileViewModel.cs" />
     <Compile Include="ViewModel\FilterViewModel.cs" />
     <Compile Include="ViewModel\MasterViewModel.cs" />
+    <Compile Include="ViewModel\MusicListViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\FileListView.xaml.cs">

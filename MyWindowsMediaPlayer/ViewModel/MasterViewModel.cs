@@ -7,30 +7,62 @@ using System.Windows.Input;
 
 using MyWindowsMediaPlayer.View;
 using MyWindowsMediaPlayer.Model;
+using Player;
+using Player.Video;
+using Player.Audio;
 
 namespace MyWindowsMediaPlayer.ViewModel
 {
     class MasterViewModel : ViewModelBase
     {
-        private readonly Library _library;
         private Window _parent;
+        private readonly Library _library;
         private readonly ObservableCollection<FilterViewModel> _filterList;
-        private ICollectionView collectionView;
-        private ICommand loadCommand;
-        private MediaList _musicList;
-        private ICommand newFilterCommand;
-        public string NewName { get; set; }
+        private ICollectionView filterCollectionView;
         public FilterViewModel SelectedFilter
         {
-            get { return this.collectionView.CurrentItem as FilterViewModel; }
+            get { return this.filterCollectionView.CurrentItem as FilterViewModel; }
+        }
+        public ObservableCollection<FilterViewModel> FilterList
+        {
+            get { return this._filterList; }
         }
 
-        public MasterViewModel(Window parent)
+        private MediaList<Audio> _musicLibrary;
+        private readonly ObservableCollection<AudioViewModel> _musicList;
+        private ICollectionView audioCollectionView;
+        public AudioViewModel SelectedTrack
         {
-            this._parent = parent;
-            this._library = new Library();
-            this._musicList = null;
-            this._filterList = new ObservableCollection<FilterViewModel>();
+            get { return this.audioCollectionView.CurrentItem as AudioViewModel; }
+        }
+        public ObservableCollection<AudioViewModel> MusicList
+        {
+            get { return this._musicList; }
+        }
+        private string test;
+        public string Test
+        {
+            get
+            {
+                return this.test;
+            }
+            set
+            {
+                this.test = value;
+                onProprietyChanged("Test");
+            }
+        }
+
+        private ICommand newFilterCommand;
+        private ICommand loadCommand;
+        private ICommand loadMediaListCommand;
+        private ICommand renameCommand;
+
+        public string NewName { get; set; }
+
+
+        private void setFilterCollectionView()
+        {
             foreach (Filter category in this._library.Categories)
             {
                 this._filterList.Add(new FilterViewModel(category));
@@ -42,16 +74,35 @@ namespace MyWindowsMediaPlayer.ViewModel
                     }
                 }
             }
-            this.collectionView = CollectionViewSource.GetDefaultView(this._filterList);
-            if(this.collectionView == null)
-                throw new NullReferenceException("collectionView");
-            this.collectionView.CurrentChanged += new EventHandler(this.OnCollectionViewCurrentChanged);
+            this.filterCollectionView = CollectionViewSource.GetDefaultView(this._filterList);
+            if (this.filterCollectionView == null)
+                throw new NullReferenceException("filterCollectionView");
+            this.filterCollectionView.CurrentChanged += new EventHandler(this.OnCollectionViewCurrentChanged);
+        }
+        private void setMusicCollectionView()
+        {
+            foreach (Audio model in this._musicLibrary.MediasList)
+            {
+                this._musicList.Add(new AudioViewModel(model));
+            }
+            this.audioCollectionView = CollectionViewSource.GetDefaultView(this._musicList);
+            if (this.audioCollectionView == null)
+                throw new NullReferenceException("audioCollectionView");
+            this.audioCollectionView.CurrentChanged += new EventHandler(this.OnCollectionViewCurrentChanged);
+        }
+        public MasterViewModel(Window parent)
+        {
+            this._parent = parent;
+            this._library = new Library();
+            this._musicList = null;
+            this.Test = "Cacao";
+            this._filterList = new ObservableCollection<FilterViewModel>();
+            this._musicList = new ObservableCollection<AudioViewModel>();
+            this.setFilterCollectionView();
         }
 
-        public ObservableCollection<FilterViewModel> FilterList
-        {
-            get { return this._filterList; }
-        }
+
+
         public ICommand LoadFolderCommand
         {
             get
@@ -72,6 +123,44 @@ namespace MyWindowsMediaPlayer.ViewModel
                 return this.newFilterCommand;
             }
         }
+        public ICommand LoadMediaListCommand
+        {
+            get
+            {
+                if (this.loadMediaListCommand == null)
+                    this.loadMediaListCommand = new RelayCommand(() => this.LoadMediaList(), () => this.IsCategoryFolder());
+
+                return this.loadMediaListCommand;
+            }
+        }
+        public ICommand RenameCommand
+        {
+            get
+            {
+                if (this.renameCommand == null)
+                    this.renameCommand = new RelayCommand(() => this.Rename());
+
+                return this.renameCommand;
+            }
+        }
+
+        private void Rename()
+        {
+            Console.WriteLine("Rename");
+            if (this.Test == "Cacao")
+                this.Test = "Chocola";
+            else
+                this.Test = "Cacao";
+        }
+
+
+        private void LoadMediaList()
+        {
+            this._musicLibrary = new MediaList<Audio>(@"C:\Users\Admin\Desktop\projets\Visual\Src\MyWindowsMediaPlayer\MyWindowsMediaPlayer\Conf\Library.Musics.xml", this.SelectedFilter.Filter);
+            this.setMusicCollectionView();
+            onProprietyChanged("MusicList");
+        }
+
         private bool IsCategoryFolder()
         {
             if (this.SelectedFilter != null && this.SelectedFilter.Parent == null)
@@ -81,9 +170,6 @@ namespace MyWindowsMediaPlayer.ViewModel
         private void NewFilter()
         {
             PopupTextView popUp = new PopupTextView();
-
-
-    
         }
 
 
@@ -91,10 +177,9 @@ namespace MyWindowsMediaPlayer.ViewModel
         {
             var dialog = new System.Windows.Forms.FolderBrowserDialog();
             dialog.ShowDialog();
-            if (this._musicList == null)
-                this._musicList = new MediaList(@"C:\Users\Admin\Desktop\projets\Visual\MyWindowsMediaPlayer\MyWindowsMediaPlayer\Conf\Library.Musics.xml", this.SelectedFilter.Filter);
+            MediaList<Audio> tempList = new MediaList<Audio>(@"C:\Users\Admin\Desktop\projets\Visual\Src\MyWindowsMediaPlayer\MyWindowsMediaPlayer\Conf\Library.Musics.xml", this.SelectedFilter.Filter);
             if (dialog.SelectedPath != "")
-                this._musicList.loadFolder(dialog.SelectedPath);
+               tempList.loadFolder(dialog.SelectedPath);
         }
 
         private void OnCollectionViewCurrentChanged(object sender, EventArgs e)

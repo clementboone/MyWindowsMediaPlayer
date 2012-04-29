@@ -5,14 +5,18 @@ using System.Xml.Linq;
 using System.Text;
 using System.IO;
 
+using MyWindowsMediaPlayer.Model;
+using Player;
+
 namespace MyWindowsMediaPlayer.Model
 {
-    class MediaList : XmlFile
+    class MediaList<T> : XmlFile
+        where T : Media, new()
     {
         private Filter _filter;
         private Category _category;
-        private List<File> _mediasList;
-        public List<File> MediasList { get { return this._mediasList; } set { this._mediasList = value; } }
+        private List<T> _mediasList;
+        public List<T> MediasList { get { return this._mediasList; } set { this._mediasList = value; } }
 
         private void loadMedias(string filter)
         {
@@ -20,12 +24,12 @@ namespace MyWindowsMediaPlayer.Model
                                                select element;
             if (medias == null)
                 return;
-            File newFile = null;
             foreach (XElement line in medias)
             {
                 if (line.Attribute("path") != null)
                 {
-                    newFile = new File(line.Attribute("path").Value);
+                    T newFile = new T();
+                    newFile.Location = line.Attribute("path").Value;
                     this._mediasList.Add(newFile);
                 }
             }
@@ -35,10 +39,8 @@ namespace MyWindowsMediaPlayer.Model
         {
             this._filePath = path;
             this._filter = filter;
-            this._mediasList = new List<File>();
+            this._mediasList = new List<T>();
             this._category = filter.getCategory();
-            foreach (string ext in this._category.Extentions)
-                Console.WriteLine("Extention : " + ext);
             this.loadFile(this._filePath);
             this.loadMedias(filter.Name);
         }
@@ -47,15 +49,14 @@ namespace MyWindowsMediaPlayer.Model
             string[] filePaths = {};
             foreach (string extention in this._category.Extentions)
             {
-                Console.WriteLine("Extention : " + extention);
                 filePaths = filePaths.Union(Directory.GetFiles(path, "*." + extention, SearchOption.AllDirectories)).ToArray<string>();
             }
             return filePaths;
         }
-        private bool addMedia(File newMedia)
+        private bool addMedia(T newMedia)
         {
             XElement newNode = new XElement("file");
-            newNode.SetAttributeValue("path", newMedia.Name);
+            newNode.SetAttributeValue("path", newMedia.Location);
             return this.addElementToNode(newNode, this._xmlDocument.Elements().First());
         }
         public int loadFolder(string path)
@@ -63,9 +64,10 @@ namespace MyWindowsMediaPlayer.Model
             int nbNewMedia = 0;
             foreach (string newFile in this.fileList(path))
             {
-                if (!this._mediasList.Exists(file => file.Name == newFile))
+                if (!this._mediasList.Exists(file => file.Location == newFile))
                 {
-                    this._mediasList.Add(new File(newFile));
+                    this._mediasList.Add(new T());
+                    this._mediasList.Last().Location = newFile;
                     this.addMedia(this._mediasList.Last());
                     nbNewMedia++;
                 }

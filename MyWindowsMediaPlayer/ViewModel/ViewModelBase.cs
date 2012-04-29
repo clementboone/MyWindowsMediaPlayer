@@ -11,6 +11,13 @@ namespace MyWindowsMediaPlayer.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public void VerifyPropertyName(string propertyName)
+        {
+            if (TypeDescriptor.GetProperties(this)[propertyName] == null)
+            {
+                Debug.Fail("Invalid property name: " + propertyName);
+            }
+        }
         public void onProprietyChanged(string propertyName)
         {
             if (this.PropertyChanged != null)
